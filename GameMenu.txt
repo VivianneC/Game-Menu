@@ -1,0 +1,479 @@
+#include <iostream> //Preprocessor directives
+#include <cstdlib>
+#include <ctime>
+#include <stdio.h>
+
+using namespace std;
+
+int rollDiceGame() //Roll dice game function
+{
+    const int A = 1; //Minimum die value
+    const int B = 6; //Maximum die value
+
+    int die1 = 1, die2 = 1; //Defining variables
+    int choice, endchoice;
+    int totalDiceRoll = die1 + die2;
+
+menu1: //label for goto statement
+    cout << "Roll Dice Game" << endl; //Display rules and menu
+    cout << "The rules are:" << endl;
+    cout << "     You get 10 points if you roll two dice and get a 7." << endl;
+    cout << "     You get 5 points if you roll two dice and get identical numbers." << endl;
+    cout << "     You get 3 points if you roll one dice and get a 4." << endl << endl;
+    cout << "Game choices:" << endl;
+    cout << "     1. Roll only one dice" << endl;
+    cout << "     2. Roll two dice" << endl;
+    cout << "     3. Quit, exit the program" << endl;
+    cout << "Please enter your choice:" << endl;
+    cin >> choice; //Read user's choice
+
+    if (choice == 1) //If statement if user enters 1
+    {
+        srand(time(NULL)); //Necessary for random number generator in this program
+        die1 = (rand() % (B - A + 1)) + A; //Random number generator for die1
+        cout << "You rolled a " << die1 << endl; //Tell user what was rolled
+
+        if (die1 == 4) //Nested if statement if random number generator outputs 4
+        {
+            cout << "Congratulations! You got 3 points!" << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+            if (endchoice == 1) //nested if statement for if user inputs 1
+            {
+                    goto menu1; //goto statement for rollDiceGame() menu
+            }
+            else if (endchoice == 2) //nested else if statement for if user inputs 2
+            {
+                cout << "Goodbye!" << endl;
+            }
+            else //nested else statement for if user inputs anything invalid
+            {
+                cout << "I'm sorry, that is not a valid choice." << endl;
+                goto menu1; //goto statement for rollDiceGame() menu
+            }
+        }
+        else //Nested else statement if random number generator outputs anything besides 4
+        {
+            cout << "Sorry, you have earned 0 points..." << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+            if (endchoice == 1) //nested if statement for if user inputs 1
+            {
+                    goto menu1; //goto statement for rollDiceGame() menu
+            }
+            else if (endchoice == 2) //nested else if statement for if user inputs 2
+            {
+                cout << "Goodbye!" << endl;
+            }
+            else //nested else statement for if user inputs anything invalid
+            {
+                cout << "I'm sorry, that is not a valid choice." << endl;
+                goto menu1; //goto statement for rollDiceGame() menu
+            }
+        }
+
+    }
+    else if (choice == 2) //Else if statement if user enters 2
+    {
+        srand(time(NULL)); //Necessary for random number generator in this program
+        die1 = (rand() % (B - A + 1)) + A; //Random number generator for die1
+        die2 = (rand() % (B - A + 1)) + A; //Random number generator for die2
+        cout << "You rolled a " << die1 << " and a " << die2 << ", which in total is " << totalDiceRoll << "." << endl; //Tell user what was rolled
+
+        if (die1 == die2) //Nested if statement for if identical numbers are outputted from the random number generator
+        {
+            cout << "Congratulations! You got 5 points!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+            if (endchoice == 1) //nested if statement for if user inputs 1
+            {
+                    goto menu1; //goto statement for rollDiceGame() menu
+            }
+            else if (endchoice == 2) //nested else if statement for if user inputs 2
+            {
+                cout << "Goodbye!" << endl;
+            }
+            else //nested else statement for if user inputs anything invalid
+            {
+                cout << "I'm sorry, that is not a valid choice." << endl;
+                goto menu1; //goto statement for rollDiceGame() menu
+            }
+
+        }
+        else if (totalDiceRoll == 7) //Nested else if statement for if the total of the two random numbers added is 7
+        {
+            cout << "Congratulations! You got 10 points!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+            if (endchoice == 1) //nested if statement for if user inputs 1
+            {
+                    goto menu1; //goto statement for rollDiceGame() menu
+            }
+            else if (endchoice == 2) //nested else if statement for if user inputs 2
+            {
+                cout << "Goodbye!" << endl;
+            }
+            else //nested else statement for if user inputs anything invalid
+            {
+                cout << "I'm sorry, that is not a valid choice." << endl;
+                goto menu1; //goto statement for rollDiceGame() menu
+            }
+        }
+        else //Nested else statement for any result not listed above
+        {
+            cout << "Sorry, you have earned 0 points..." << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+            if (endchoice == 1) //nested if statement for if user inputs 1
+            {
+                    goto menu1; //goto statement for rollDiceGame() menu
+            }
+            else if (endchoice == 2) //nested else if statement for if user inputs 2
+            {
+                cout << "Goodbye!" << endl;
+            }
+            else //nested else statement for if user inputs anything invalid
+            {
+                cout << "I'm sorry, that is not a valid choice." << endl;
+                goto menu1; //goto statement for rollDiceGame() menu
+            }
+        }
+
+
+    }
+    else if (choice == 3) //Else if statement if user enters 3
+    {
+        cout << "Goodbye!" << endl;
+    }
+    else //Else statement for invalid input
+    {
+        cout << "I'm sorry, that is not a valid choice. Please try again." << endl;
+        goto menu1; //goto statement
+    }
+    return choice;
+
+}
+int rpsGame() //rock/paper/scissors game function
+{
+    const int C = 1; //Minimum number
+    const int D = 3; //Maximum number
+
+    int choice, endchoice; //defining variables
+    int result;
+menu2: //label for goto statement
+    cout << "Rock/Paper/Scissors Game" << endl; //Display rules and menu for rock/paper/scissors game
+    cout << "The rules are:" << endl;
+    cout << "     Rock beats scissors." << endl;
+    cout << "     Scissors beats paper." << endl;
+    cout << "     Paper beats rock." << endl << endl;
+    cout << "Game choices:" << endl;
+    cout << "     1. Rock" << endl;
+    cout << "     2. Paper" << endl;
+    cout << "     3. Scissors" << endl;
+    cout << "     4. Quit, exit the program" << endl;
+    cout << "Please enter your choice:" << endl;
+    cin >> choice; //Read user input
+
+    srand(time(NULL)); //Necessary for random number generator in this program
+    result = (rand() % (D - C + 1)) + C; //Random number generator for program's output of rock, paper, or scissors, store in result
+
+    switch (result) //switch statement for the result of the random number generator
+    {
+    case 1: //if generator outputs 1
+        if (choice == 1) //if statement for if user chose 1
+        {
+            cout << "The computer chose rock." << endl;
+            cout << "And you chose rock." << endl;
+            cout << "It's a tie!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 2) //else if statement for if user chose 2
+        {
+            cout << "The computer chose rock." << endl;
+            cout << "And you chose paper." << endl;
+            cout << "Congratulations! You win!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 3) //else if statement for if user chose 3
+        {
+            cout << "The computer chose rock." << endl;
+            cout << "And you chose scissors." << endl;
+            cout << "Sorry, you lost..." << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 4) //else if statement for if user chose 4
+        {
+            cout << "Goodbye!" << endl;
+        }
+        else //else statement for any invalid input
+        {
+            cout << "I'm sorry, that is not a valid choice. Please try again." << endl;
+            goto menu2; //goto statement redirecting to the rpsGame() menu
+        }
+        break;
+    case 2: //if generator outputs 2
+        if (choice == 1) //if statement for if user chose 1
+        {
+            cout << "The computer chose paper." << endl;
+            cout << "And you chose rock." << endl;
+            cout<< "Sorry, you lost..." << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 2) //else if statement for if user chose 2
+        {
+            cout << "The computer chose paper." << endl;
+            cout << "And you chose paper." << endl;
+            cout << "It's a tie!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 3) //else if statement for if user chose 3
+        {
+            cout << "The computer chose paper." << endl;
+            cout << "And you chose scissors." << endl;
+            cout << "Congratulations! You win!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 4) //else if statement for if user chose 4
+        {
+            cout << "Goodbye!" << endl;
+        }
+        else //else statement for any invalid input
+        {
+            cout << "I'm sorry, that is not a valid choice. Please try again." << endl;
+            goto menu2; //goto statement redirecting to the rpsGame() menu
+        }
+        break;
+    case 3: //if generator outputs 3
+        if (choice == 1) //if statement for if user chose 1
+        {
+            cout << "The computer chose scissors." << endl;
+            cout << "And you chose rock." << endl;
+            cout<< "Congratulations! You win!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 2) //else if statement for if user chose 2
+        {
+            cout << "The computer chose scissors." << endl;
+            cout << "And you chose paper." << endl;
+            cout << "Sorry, you lost..." << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 3) //else if statement for if user chose 3
+        {
+            cout << "The computer chose scissors." << endl;
+            cout << "And you chose scissors." << endl;
+            cout << "It's a tie!" << endl << endl;
+
+            cout << "Would you like to:" << endl;
+            cout << "     1. Play again?" << endl;
+            cout << "     2. Exit the program?" << endl;
+            cin >> endchoice;
+                    if (endchoice == 1) //nested if statement for if user inputs 1
+                    {
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+                    else if (endchoice == 2) //nested else if statement for if user inputs 2
+                    {
+                        cout << "Goodbye!" << endl;
+                    }
+                    else //nested else statement for if user inputs anything invalid
+                    {
+                        cout << "I'm sorry, that is not a valid choice." << endl;
+                        goto menu2; //goto statement for rpsGame() menu
+                    }
+        }
+        else if (choice == 4) //else if statement for if user chose 4
+        {
+            cout << "Goodbye!" << endl;
+        }
+        else //else statement for any invalid input
+        {
+            cout << "I'm sorry, that is not a valid choice. Please try again." << endl;
+            goto menu2; //goto statement redirecting to the rpsGame() menu
+        }
+        break;
+
+        return choice;
+    }
+}
+int main() //main function
+{
+    int choice; //Defining variable
+mainmenu: //label for goto statement
+    cout << "1. Play Rock/Paper/Scissors Game" << endl; //Display main menu
+    cout << "2. Play Dice Roll Game" << endl;
+    cout << "3. Exit" << endl << endl;
+    cout << "Enter your choice:" << endl;
+    cin >> choice;
+
+    if (choice == 1) //if statement for if the user inputs 1
+    {
+        rpsGame(); //calls rock/paper/scissors game function
+    }
+    else if (choice == 2) //else if statement for if the user inputs 2
+    {
+        rollDiceGame(); //calls roll dice game function
+    }
+    else if (choice == 3) //else if statement for if the user inputs 3
+    {
+        cout << "Goodbye!" << endl;
+    }
+    else //else statement for if the user inputs anything invalid
+    {
+        cout << "I'm sorry, that is not a valid choice. Please try again." << endl;
+        goto mainmenu; //goto statement redirecting to the main menu
+    }
+
+    return 0;
+}
